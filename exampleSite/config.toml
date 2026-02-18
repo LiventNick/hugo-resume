@@ -60,6 +60,14 @@ trackerID = "XX-123446-01"
     name = "Stack Overflow"
     icon = "stack-overflow"
 
+
+
+[params.customSections.ham]
+    name = "SOME LINK"
+    url  = "https://example.com"
+
+
+
 [outputs]
 home = ["HTML", "JSON"]
 
