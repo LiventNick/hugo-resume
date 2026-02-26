@@ -3,15 +3,50 @@
               
               {{ define "main" }}
               <section class="resume-section p-3 p-lg-5 d-flex d-column" id="{{ replace .Title " " "-" }}">
-                <div class="my-auto">
-                  <h3 class="mb-0 text-center
-                  "><span class="text-primary text-center
-                    ">{{ .Param "firstName" }} {{ .Param "lastName" }}</span></h3>
-                  
-                  {{ partial "contact-qr" . }}
-                  <div class="text-center">
-                    {{ .Content }}
+                <div class="container-fluid my-auto">
+                  <h3 class="mb-4 text-center"><span class="text-primary">{{ .Param "firstName" }} {{ .Param "lastName" }}</span></h3>
+
+                  <div class="row justify-content-center">
+                    <div class="col-12 col-lg-5 mb-4">
+                      <div class="card h-100">
+                        <div class="card-body text-center">
+                          {{ partial "contact-qr" . }}
+                          <div class="mt-3">
+                            {{ .Content }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-lg-7">
+                      <div class="card h-100">
+                        <div class="card-body">
+                          <form id="contact-form" data-api-endpoint="{{ .Site.Params.contactApiEndpoint | default "https://api.liventnick.xyz/contact" }}">
+                            <div class="form-group">
+                              <label for="name">Name</label>
+                              <input class="form-control" type="text" name="name" id="name" placeholder="Name" required>
+                            </div>
+                            <div class="form-group">
+                              <label for="email">Email</label>
+                              <input class="form-control" type="email" id="email" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                              <label for="message">Message</label>
+                              <textarea class="form-control" name="message" id="message" rows="6" placeholder="Message" required></textarea>
+                            </div>
+                            <div class="form-group">
+                              <div class="cf-turnstile" data-sitekey="{{ .Site.Params.contactFormTurnstileSiteKey }}"></div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Send</button>
+                            <p id="form-status" class="mt-3 mb-0"></p>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
+
+              <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+              <script src="{{ "js/contact.js" | relURL }}"></script>
               {{ end }}
