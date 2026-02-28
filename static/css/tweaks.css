@@ -149,3 +149,11 @@ div.skills-heading{
     img.qrcode {
       max-width: 300px !important;
     }
+
+@media (max-width: 768px) {
+  #contact-form .cf-turnstile {
+    display: inline-block;
+    transform: scale(0.85);
+    transform-origin: left center;
+  }
+}
