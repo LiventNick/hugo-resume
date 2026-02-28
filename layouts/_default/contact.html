@@ -53,7 +53,7 @@
                   if (!turnstileElement) return;
 
                   var isMobile = window.matchMedia('(max-width: 768px)').matches;
-                  turnstileElement.setAttribute('data-size', isMobile ? 'compact' : 'normal');
+                  turnstileElement.setAttribute('data-size', isMobile ? 'flexible' : 'normal');
                 })();
               </script>
               <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
