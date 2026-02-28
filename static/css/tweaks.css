@@ -152,8 +152,8 @@ div.skills-heading{
 
 @media (max-width: 768px) {
   #contact-form .cf-turnstile {
-    width: 100%;
-    max-width: 100%;
+    width: 85%;
+    max-width: 85%;
   }
 
   #contact-form .cf-turnstile iframe {
