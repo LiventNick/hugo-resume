@@ -152,12 +152,11 @@ div.skills-heading{
 
 @media (max-width: 768px) {
   #contact-form .contact-turnstile-wrap {
-    width: 100%;
-    max-width: 100%;
     overflow: hidden;
+    position: relative;
   }
 
   #contact-form .contact-turnstile-wrap .cf-turnstile {
-    width: 100%;
+    display: inline-block;
   }
 }

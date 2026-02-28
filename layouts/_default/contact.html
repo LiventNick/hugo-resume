@@ -56,17 +56,37 @@
                   var messageField = document.getElementById('message');
                   if (!turnstileWrap || !turnstileElement || !messageField) return;
 
-                  var isMobile = window.matchMedia('(max-width: 768px)').matches;
-                  if (isMobile) {
-                    var messageWidth = messageField.getBoundingClientRect().width;
-                    turnstileWrap.style.width = messageWidth + 'px';
-                    turnstileWrap.style.maxWidth = messageWidth + 'px';
-                    turnstileElement.setAttribute('data-size', 'flexible');
-                  } else {
-                    turnstileWrap.style.width = '';
-                    turnstileWrap.style.maxWidth = '';
+                  var applyMobileScale = function() {
+                    var isMobile = window.matchMedia('(max-width: 768px)').matches;
+                    
+                    if (!isMobile) {
+                      turnstileWrap.style.width = '';
+                      turnstileWrap.style.height = '';
+                      turnstileElement.style.transform = '';
+                      turnstileElement.style.transformOrigin = '';
+                      turnstileElement.setAttribute('data-size', 'normal');
+                      return;
+                    }
+
+                    // Set widget to normal size first
                     turnstileElement.setAttribute('data-size', 'normal');
-                  }
+                    
+                    // Wait a moment for widget to render, then scale it
+                    setTimeout(function() {
+                      var messageWidth = messageField.getBoundingClientRect().width;
+                      var widgetNormalWidth = 300; // Normal Turnstile width
+                      var widgetNormalHeight = 65; // Normal Turnstile height
+                      var scale = Math.min(1, messageWidth / widgetNormalWidth);
+                      
+                      turnstileWrap.style.width = messageWidth + 'px';
+                      turnstileWrap.style.height = (widgetNormalHeight * scale) + 'px';
+                      turnstileElement.style.transform = 'scale(' + scale + ')';
+                      turnstileElement.style.transformOrigin = 'left top';
+                    }, 100);
+                  };
+
+                  applyMobileScale();
+                  window.addEventListener('resize', applyMobileScale);
                 })();
               </script>
               <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
