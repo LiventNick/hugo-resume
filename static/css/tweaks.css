@@ -151,12 +151,13 @@ div.skills-heading{
     }
 
 @media (max-width: 768px) {
-  #contact-form .cf-turnstile {
-    width: 85%;
-    max-width: 85%;
+  #contact-form .contact-turnstile-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
-  #contact-form .cf-turnstile iframe {
-    width: 100% !important;
+  #contact-form .contact-turnstile-wrap .cf-turnstile {
+    width: 100%;
   }
 }
