@@ -1,7 +1,7 @@
 {{ define "main" }}
    {{ partial "about.html" .}}
-   {{ $projects := slice "creations" "media" }}
-   {{ $sections := slice "publications" "blog" }}
+   {{ $projects := slice "creations" }}
+   {{ $sections := slice "publications" "blog" "media" }}
    {{ $site := .Site }}
    {{ range .Site.Params.sections }}
       {{ $sectionName := . }}
